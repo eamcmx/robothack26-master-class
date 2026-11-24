@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>What we built, and what is behind it · RobotHack '26</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/sheet.css">
+</head>
+<body>
+<div id="stage">
+  <section class="sheet" id="s-open" data-title="What we built, and what is behind it" data-t="0 to 1.5">
+    <div class="in">
+      <p class="kicker">RobotHack '26 · Master class</p>
+      <h1>From a sentence<br>to a <em>machine</em></h1>
+      <div class="rule"></div>
+      <p class="lead" style="width:600px">What we built with a language model and Autodesk Fusion, and what you have to know to do it.</p>
+      <p style="margin-top:40px;font-size:26px;width:600px"><b>Prof. Emmanuel A. Merchán-Cruz</b><br>Transport and Telecommunication Institute, Riga</p>
+      <figure class="vp" style="top:40px;width:1020px"><video class="film" data-loop src="films/reel.mp4" preload="auto" muted playsinline></video><figcaption>Rendered by Fusion from the book's scripts, 23 November 2026</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Before people come in: double-click Start deck.bat, press F, then n for this window on the laptop screen. The film behind you runs on its own and has no sound.</p><p data-k="0"><b>SAY</b> Hello everyone, and welcome to this master class. Every machine you see behind me was built by Autodesk Fusion, from a program. Nobody drew them by hand. The programs were written by a language model, Claude, from a description in words. So the title is meant literally: from a sentence to a machine.</p><p data-k="0">In the next forty minutes I will do three things. First, I show you what this gives when it works. Then I show you what is behind it: what a language model can and cannot do, what a bad prompt looks like and what a good prompt looks like. And you will see why the theory you study is exactly what makes a good prompt possible.</p><p data-k="0">At the end I give you one page that builds a whole line-follower robot, with every screw and nut, and you can take it home on your phone. Please keep your questions for the end; there will be time.</p><p class="src"><b>SOURCE</b> The reel is the same as on the next sheet.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-built" data-steps="3" data-title="What we built" data-t="1.5 to 4">
+    <div class="in">
+      <p class="kicker">Part 1 · The result</p>
+      <h2>What we<br><em>built</em></h2>
+      <p style="width:560px">Each one is a script for Fusion's programming interface, written from a prompt of five parts, then built, moved and measured by Fusion.</p>
+      <div class="facts" style="top:430px;flex-direction:column;gap:22px" data-st="2">
+        <div><b>29</b><span>machines and assemblies in the book's companion</span></div>
+        <div><b>58 / 60</b><span>prompts gave a fresh model's script that passed Fusion's check</span></div>
+      </div>
+      <p class="filmkeys" style="position:absolute;right:0;top:686px"><b>K</b> pause <b>J</b> <b>L</b> 5 s <b>R</b> again</p>
+      <div class="book" data-st="3" style="right:0;top:0;width:1120px;height:636px;flex-direction:column;align-items:stretch;z-index:2"><img src="assets/book-covers.webp" alt="The three covers of Mechanical Design in Autodesk Fusion with Claude" style="width:1114px;height:532px"><div class="bt" style="padding:14px 28px;display:flex;justify-content:space-between;align-items:center"><span>Mechanical Design in Autodesk Fusion with Claude<small style="margin-top:2px">Three volumes · the machines on this sheet are from them</small></span><span class="amz" style="margin-top:0">Coming soon on Amazon</span></div></div>
+      <figure class="vp"><video class="film" data-play="1" src="films/reel.mp4" preload="metadata" playsinline></video><figcaption>Fusion's own renderer · each joint driven by the script · nothing drawn by hand</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Click 1 plays the reel full size (36 s). Click 2 puts it back and shows the two numbers. Click 3 shows the three covers of the book. K pauses the film if you want to talk over one machine.</p><p data-k="0"><b>SAY</b> Let me start with the result. These machines are from my book, Mechanical Design in Autodesk Fusion with Claude. Each one is a script for Fusion's programming interface. The model wrote the script from a prompt of five parts. Then Fusion built it, moved it and measured it.</p><p data-k="1"><b>CLICK 1</b> <i>[the reel plays; one line per machine, as each one appears]</i></p><p data-k="1">A robot wrist: two motors, three bevel gears, tilt and roll.</p><p data-k="1">A SCARA arm, the kind that places parts on circuit boards.</p><p data-k="1">A palletizing robot: a hundred parts.</p><p data-k="1">A planetary gearbox with four planets.</p><p data-k="1">A gear pair, and a four-bar linkage.</p><p data-k="1">Everything that moves here is driven by the script and rendered by Fusion itself. Nothing is drawn by hand.</p><p data-k="2"><b>CLICK 2</b> Twenty-nine machines and assemblies are in the book's companion. And this is the number that matters to me. For sixty prompts, we gave a fresh model only the prompt, nothing else. Fifty-eight times, the program it wrote passed Fusion's check. Fifty-eight out of sixty.</p><p data-k="3"><b>CLICK 3</b> This is the book: Mechanical Design in Autodesk Fusion with Claude, in three volumes. The first is machine elements, gears and mechanisms. The second, machines and robots. The third, detailed design, validation and drawings. It will be available on Amazon very soon.</p><p data-k="3">So how does all this work? And why does it not work when most people try it? That is the rest of this class: what a language model is, how you have to ask it, and the theory you need to ask well.</p><p class="src"><b>SOURCE</b> Reel rendered on 23 November 2026 by Robohack-2026-class/showcase: Fusion builds each machine from the book's script, turns its joints and renders every frame. 58 of 60: the book's prompt_tests/README.md, runs of 11 and 12 November 2026.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-model" data-steps="3" data-title="What a language model can and cannot do" data-t="4 to 6">
+    <div class="in">
+      <p class="kicker">Part 2 · The machine that predicts words</p>
+      <h2>What a language model<br>can and cannot do</h2>
+      <p style="width:860px">A language model continues text: given the words so far, it predicts the next one, again and again. It has read about gears in books and forum posts. It has never seen a gear, and it does not measure anything.</p>
+      <div class="tests">
+        <div class="card" data-st="1"><small>Asked</small><b>Pitch diameter of a gear with 20 teeth, module 2?</b><p>It is written in every textbook: d = m z.</p><div class="ans ok">40 mm. Right.</div></div>
+        <div class="card" data-st="2"><small>Asked, no tools, three fresh sessions</small><b>Turn the small gear 9° alone. What volume do the two gears share?</b><p>Each answer came with a confident reason: "rigid solids cannot overlap".</p><div class="ans no">0 mm³, three times.</div></div>
+        <div class="card" data-st="3"><small>Measured by Autodesk Fusion</small><b>The same question, asked of the solids themselves</b><p>Fusion intersects the two bodies and weighs what is left.</p><div class="ans judge">173.1 mm³</div></div>
+      </div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Three clicks.</p><p data-k="0"><b>SAY</b> First: what is this machine we are talking to? A language model does one thing. It continues text. Given the words so far, it predicts the next word, and then the next, again and again. It has read a lot about gears: textbooks, catalogues, forum posts. But it has never seen a gear, and it does not measure anything. Let me show you what that means.</p><p data-k="1"><b>CLICK 1</b> An easy question. What is the pitch diameter of a gear with twenty teeth, module two? Forty millimetres: module times teeth. It gets this right, because that formula is written in every textbook. It has read it many, many times.</p><p data-k="2"><b>CLICK 2</b> Now a question that no textbook answers. Take two gears in mesh. Turn the small gear nine degrees on its own, without the big one. What volume do the two gears share? I asked three fresh sessions, with no tools. Three times the answer was zero cubic millimetres, each time with a confident reason: rigid solids cannot overlap. It sounds very sensible.</p><p data-k="3"><b>CLICK 3</b> Then we asked Fusion. Fusion intersects the two solid bodies and weighs what is left: 173.1 cubic millimetres. The teeth run into each other.</p><p data-k="3">So the model does not know the answer. It knows what answers sound like. If you remember one thing from today, remember this. We do not ask the model to know. We ask it to write programs, Fusion measures, and we check.</p><p class="src"><b>SOURCE</b> The three answers: 22 November 2026, Claude Sonnet, no tools, in 14, 32 and 24 s. Fusion's 173.1 mm³: the kit's check on the 20 and 40 pair with gear 1 turned 9 degrees alone.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-badgear" data-steps="2" data-title="A bad prompt for a gear pair" data-t="6 to 9">
+    <div class="in">
+      <p class="kicker">Part 3 · A bad prompt</p>
+      <h2>"12 and 40 teeth,<br>module 2"</h2>
+      <div class="prompt"><small>The whole request</small>Make a spur gear pair in Fusion: 12 and 40 teeth, module 2, 10 mm wide, on a base plate with two shafts.</div>
+      <ul class="found" data-st="2" style="margin-top:22px">
+        <li>Claude: "two <b>involute</b> spur gears ... meshed at the 52 mm standard centre distance"</li>
+        <li class="no">Fusion: <b>no teeth at all</b>, a 12-sided prism and a plain disc</li>
+        <li class="no">12 teeth built without a word: below 18 at 20°, the teeth undercut</li>
+        <li class="no">Fusion's clash check: nothing inside anything. <b>It passed.</b></li>
+      </ul>
+      <p data-st="2" style="width:600px;margin-top:14px">It sounded right, it built, and the check passed. Only someone who knows gears sees that it is not a gear.</p>
+      <p class="filmkeys" style="position:absolute;right:0;top:686px"><b>K</b> pause <b>J</b> <b>L</b> 5 s <b>R</b> again</p>
+      <figure class="vp"><video class="film" data-play="1" src="films/build-gear-few.mp4" preload="metadata" playsinline></video><figcaption>Its script, built by Fusion step by step · real session, 23 November 2026</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Click 1 plays the film full size (20 s). Click 2 puts it back with the findings.</p><p data-k="0"><b>SAY</b> Now let us ask for gears the way most people would. Here is the whole request: make a spur gear pair in Fusion, twelve and forty teeth, module two, ten millimetres wide, on a base plate with two shafts. Numbers, and nothing else. It looks clear. Every number is there. Let us see what comes back.</p><p data-k="1"><b>CLICK 1</b> <i>[the film]</i> The model thought for about six minutes and wrote about two hundred lines. Here Fusion runs those lines, step by step: the plate, the two shafts, and then the gears. Watch the gears.</p><p data-k="1"><i>[when the film ends]</i> And the model reported: two involute spur gears, meshed at the fifty-two millimetre standard centre distance.</p><p data-k="2"><b>CLICK 2</b> Now look at what it built. There are no teeth at all: a twelve-sided prism and a plain disc. It also took twelve teeth without a word, and twelve is too few. Below eighteen teeth, at a pressure angle of twenty degrees, the cutter eats away the foot of the tooth. And Fusion's clash check says: nothing is inside anything. It passed.</p><p data-k="2">So it sounded right, it built, and the check passed. Only someone who knows gears sees that it is not a gear. A check only finds what it measures. To write a prompt that cannot pass like this, you need the theory. So, for the next few minutes, the theory.</p><p class="src"><b>SOURCE</b> Run gear-few-1 in prompt-lab/runs. The session could only write its file (the sealed rung, prompt-lab/README.md); Fusion ran the script after it, and the film is Fusion replaying the script through its timeline. It loaded one installed Fusion skill before writing, which the later runs could not; it built no teeth all the same.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-pair" data-steps="3" data-title="Predict, then build" data-t="9 to 11">
+    <div class="in">
+      <p class="kicker">Part 4 · The theory behind the prompt · the first habit</p>
+      <h2>Predict,<br>then build</h2>
+      <p style="width:700px">Before Fusion builds anything, write down what it must give. If the numbers disagree, one of you is wrong, and you will find out which.</p>
+      <div class="calc" data-st="1">
+        <div class="ln"><i>Pitch diameters</i>d = m z = 2 × 20 = 40, 2 × 40 = 80 mm</div>
+        <div class="ln"><i>Centre distance</i>a = (40 + 80) / 2 = <span class="res">60 mm</span></div>
+        <div class="ln"><i>Quarter turn</i>90° × 20 / 40 = <span class="res">45°</span>, the other way</div>
+      </div>
+      <div class="live" data-st="2"><b>Live in Fusion, if the stage kit is running</b><q>Build a gear pair with 20 and 40 teeth.</q><q>Turn the small gear a quarter turn.</q></div>
+      <div class="verdict" data-st="3"><span class="stamp ok">Fusion: 60.00 mm</span><span class="stamp ok">Gear 2: −45°</span></div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Three clicks. If the stage kit is running, Fusion after click 2.</p><p data-k="0"><b>SAY</b> The first habit of an engineer who works with a model: before Fusion builds anything, write down what it must give. Predict, then build. If the numbers disagree, one of you is wrong, and you will find out which.</p><p data-k="1"><b>CLICK 1</b> Twenty and forty teeth, module two. Pitch diameter is module times teeth: two times twenty is forty, two times forty is eighty millimetres. The centres are half the sum apart: forty plus eighty, divided by two, sixty millimetres. And a quarter turn of the small gear, ninety degrees, turns the big gear by ninety times twenty over forty: forty-five degrees, the other way.</p><p data-k="2"><b>CLICK 2</b> Now I ask, in plain words: build a gear pair with twenty and forty teeth, and turn the small gear a quarter turn.</p><p data-k="2" class="live"><b>IF LIVE</b> Alt+Tab to Fusion and say the two sentences. The build takes about 15 s, the turn about 10 s. Alt+Tab back.</p><p data-k="3"><b>CLICK 3</b> Fusion says sixty millimetres, and gear two at minus forty-five degrees. Minus, because it turns the other way. We agree. If we did not agree, I would know that one of us is wrong, before I trust anything else in the design.</p><p class="src"><b>SOURCE</b> Rehearsed: 13 to 20 s for the build, 10 to 12 s for the turn. 60.00 and −45 are what Fusion printed in every rehearsal.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-tooth" data-steps="4" data-title="How a gear tooth is made" data-t="11 to 14">
+    <div class="in">
+      <p class="kicker">Part 4 · How a tooth is made</p>
+      <h2>How a gear tooth<br>is made</h2>
+      <div class="stack" style="width:780px;height:200px">
+        <p data-only="0">Wind a string round a disc, the <b>base circle</b>, and unwind it, keeping it tight. Its end draws a curve called the <b>involute</b>. Every flank of these teeth is that curve. Two involute flanks push each other along one straight line, so the speed ratio stays exactly constant.</p>
+        <p data-only="1">Nobody draws involutes in a factory. A cutter with <b>straight</b> sides at 20° rolls along the pitch circle and cuts away everything it passes through. The curve comes out of the rolling. This gear was cut the same way, here, in the browser.</p>
+        <p data-only="2">With too few teeth, the cutter's tip swings into the foot of the tooth and cuts it away: <b>undercut</b>. The tooth is weak where it should be strongest.</p>
+      </div>
+      <div class="calc" data-st="2" style="margin-top:0">
+        <div class="ln"><i>Fewest teeth</i>smallest z = 2 / sin²α</div>
+        <div class="ln"><i>α = 20°</i>= 2 / 0.342²  = 2 / 0.117 = <span class="res">17.1, so 18</span></div>
+      </div>
+      <div class="live" data-st="3" style="left:0;bottom:230px;width:560px"><b>Live in Fusion, if the stage kit is running</b><q>Now build the same pair with a small gear of 12 teeth.</q></div>
+      <div class="verdict" data-st="4" style="left:0;bottom:375px"><span class="stamp no">Refused: below 18 teeth</span></div>
+      <div class="scale" style="position:absolute;left:0;bottom:150px"><span>Teeth z</span><input id="tooth-z" type="range" min="8" max="40" value="20"><output id="tooth-zv">20</output><span id="tooth-verdict"></span></div>
+      <p class="keys" style="position:absolute;left:0;bottom:104px">Drag, or <b>+</b> <b>−</b> to change the teeth</p>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Four clicks. The slider at the right changes the number of teeth: drag it, or press + and −.</p><p data-k="0"><b>SAY</b> Why did the bad prompt give no teeth? Because it never said what a tooth is. So how is a gear tooth made? Wind a string round a disc, the base circle, and unwind it, keeping it tight. The end of the string draws a curve: the involute. Every flank of these teeth is that curve. Two involute flanks push each other along one straight line, so the speed ratio stays exactly constant. That is why a good gearbox runs smoothly.</p><p data-k="1"><b>CLICK 1</b> But nobody draws involutes in a factory. A cutter with straight sides, at twenty degrees, rolls along the pitch circle and cuts away everything it passes through. The curve comes out of the rolling, by itself. The gear on this sheet was cut the same way, here, in the browser.</p><p data-k="2"><b>CLICK 2</b> Now, what happens with too few teeth? <i>[drag the slider slowly from 20 down to 12]</i> Watch the foot of the tooth. The tip of the cutter swings into it and cuts it away. That is undercut. The tooth is weak exactly where it should be strongest.</p><p data-k="2">There is a rule for it. The fewest teeth is two divided by sine squared of the pressure angle. At twenty degrees the sine is 0.342; squared, 0.117; two divided by that is 17.1. So at least eighteen teeth.</p><p data-k="3"><b>CLICK 3</b> The book's script knows this rule. So let us ask Fusion for twelve teeth anyway: now build the same pair with a small gear of twelve teeth.</p><p data-k="3" class="live"><b>IF LIVE</b> Alt+Tab, say the sentence, wait for Fusion's answer, Alt+Tab back.</p><p data-k="4"><b>CLICK 4</b> Refused: below eighteen teeth. Refused with the rule, before anything was drawn. That is what the bad prompt never asked for.</p><p class="src"><b>SOURCE</b> The formula and its 18 are in the gear-pair prompt of the book.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-judge" data-steps="3" data-title="The judge: interference" data-t="14 to 16">
+    <div class="in">
+      <p class="kicker">Part 4 · Who says no</p>
+      <h2>The judge</h2>
+      <div class="stack" style="width:720px;height:250px">
+        <p data-only="0">The gears are linked: turn one and Fusion turns the other by the ratio. Switch the link off and turn the small gear <b>alone</b>. Half a tooth of a 20-tooth gear is 360 / 20 / 2 = 9°. The teeth run into each other.</p>
+        <p data-only="1">This sheet cuts its own gears with its own cutter and counts the overlap, degree by degree. At 9°: about 180 mm³.</p>
+        <p data-only="2">Fusion intersects its real solids. Its number is a measurement, and the model cannot argue with it.</p>
+        <p data-only="3">The book's check does the same on every script it tests, and so does a <b>control</b>: remove the line that turns gear 2 by half a tooth, and the check must fail. It did: 186.4 mm³.</p>
+      </div>
+      <div class="live" data-st="2"><b>Live in Fusion, if the stage kit is running</b><q>Turn only the small gear by half a tooth, without the big one. Then ask Fusion if the parts collide.</q></div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Three clicks. If the stage kit is running, Fusion after click 2.</p><p data-k="0"><b>SAY</b> Now the judge: who says no? In Fusion the two gears are linked. Turn one, and Fusion turns the other by the ratio. Now switch the link off and turn the small gear alone, by half a tooth. Half a tooth of a twenty-tooth gear is 360 divided by twenty, divided by two: nine degrees. The teeth run into each other.</p><p data-k="1"><b>CLICK 1</b> This sheet cuts its own gears with its own cutter and counts the overlap, degree by degree. At nine degrees: about 180 cubic millimetres.</p><p data-k="2"><b>CLICK 2</b> Now we ask Fusion: turn only the small gear by half a tooth, without the big one, then check whether the parts collide.</p><p data-k="2" class="live"><b>IF LIVE</b> Alt+Tab, say the two sentences, read Fusion's volume aloud, Alt+Tab back.</p><p data-k="2">Fusion measures 173 cubic millimetres, the number you saw at the start. The cutter of this sheet makes a slightly different tooth foot, so the two numbers differ by about four per cent. Fusion intersects its real solids. Its number is a measurement, and the model cannot argue with it.</p><p data-k="3"><b>CLICK 3</b> And the book does one more thing: it tests the test. Remove the line that turns gear two by half a tooth, on purpose, and the check must fail. It did: 186.4 cubic millimetres. A check you have never seen fail is a check you cannot trust.</p><p class="src"><b>SOURCE</b> The sheet's curve and its 180 mm³ are computed live from the gears it cuts. 186.4 mm³: the book's companion, results/controls_gearpair_half_tooth.txt, 10 November 2026.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-method" data-steps="2" data-title="A prompt you can trust" data-t="16 to 18.5">
+    <div class="in">
+      <p class="kicker">Part 5 · The good prompt</p>
+      <h2>A prompt you<br>can trust</h2>
+      <p style="width:640px">Not "make me a gear". A specification in five parts, with the answers fixed before the run. This is the gear-pair prompt of <i>Mechanical Design in Autodesk Fusion with Claude</i>.</p>
+      <div class="book" style="left:780px;top:574px;width:1000px;height:222px"><img src="assets/book-covers.webp" alt="The three covers of Mechanical Design in Autodesk Fusion with Claude" style="height:216px;width:452px"><div class="bt">Three volumes<small>Machine elements, gears and mechanisms · machines and robots · detailed design, validation and drawings</small><span class="amz">Coming soon on Amazon</span></div></div>
+      <div class="spec">
+        <div><small>1 · Inputs</small><p>module m, 2 · teeth z1, 20 · teeth z2, 40 · pressure angle α, 20° · face width, 10 · backlash, 0.2</p></div>
+        <div><small>2 · Derived, never typed</small><p>centre distance a = m·(z1 + z2) / 2 · fewest teeth z<sub>min</sub> = 2 / sin²α, rounded up</p></div>
+        <div><small>3 · Hard constraints</small><p>z1 and z2 at least z<sub>min</sub>, 18 at 20°: refuse with a message · gear 2 turned so a tooth sits in a gap</p></div>
+        <div><small>4 · Fusion conventions</small><p>As-built joints, not joints · a motion link: gear 1 turns gear 2 by z1/z2, the other way</p></div>
+        <div class="acc"><small>5 · Acceptance criteria</small><p>90° on gear 1 turns gear 2 by 45° · at rest, no interference · z2 = 50 gives 70 mm · z1 = 12 is refused</p></div>
+      </div>
+      <div class="facts" data-st="1">
+        <div><b>431</b><span>lines a fresh model wrote, 11 Nov, with the check's names</span></div>
+        <div><b>23 / 23</b><span>checks passed in Fusion, in 9 s</span></div>
+      </div>
+      <div class="facts" data-st="2" style="top:672px">
+        <div><b>58 / 60</b><span>prompts of the book gave a script that passed its check</span></div>
+        <div><b>65</b><span>traps of Fusion's API, written down for the model</span></div>
+      </div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Two clicks.</p><p data-k="0"><b>SAY</b> Now we can write a good prompt. Not "make me a gear", but a specification in five parts, with the answers fixed before the run. This is the gear-pair prompt from the book. Let us read it together.</p><p data-k="0">One, inputs: every number. Module two, twenty and forty teeth, pressure angle twenty degrees, face width ten, backlash 0.2.</p><p data-k="0">Two, derived values, never typed. The centre distance is module times the sum of the teeth, divided by two. The fewest teeth is two over sine squared alpha, rounded up. The script works these out. If you type sixty and later change a number, sixty is wrong and nobody notices.</p><p data-k="0">Three, hard constraints. Both gears have at least the fewest teeth, eighteen at twenty degrees, or the script refuses with a message. And gear two is turned so that a tooth sits in a gap.</p><p data-k="0">Four, Fusion conventions. As-built joints, not ordinary joints. A motion link: gear one turns gear two by z1 over z2, the other way.</p><p data-k="0">Five, acceptance. Ninety degrees on gear one turns gear two by forty-five. At rest, no interference. Fifty teeth on gear two gives seventy millimetres. Twelve teeth on gear one is refused.</p><p data-k="0">Look at part five. Every line is a number written before the run, and every line needs the theory you just saw.</p><p data-k="1"><b>CLICK 1</b> On the 11th of November a fresh model got this page, the book's parts library and the names the check looks up. It wrote 431 lines, and the check passed all twenty-three tests in Fusion, in nine seconds. In a moment you will see what happens without those names.</p><p data-k="2"><b>CLICK 2</b> Across the whole book: sixty prompts, fifty-eight passed. And a file of sixty-five traps of Fusion's programming interface, written down for the model, so it does not have to discover them again. All of it is in the three volumes you see below, coming soon on Amazon.</p><p class="src"><b>SOURCE</b> The book's companion: prompt_tests/README.md (58 of 60, 11 and 12 November 2026), prompt_tests/GearPairOnPlate (431 lines, 23 ok, 9 s), FUSION_API_TRAPS.md (65 traps).</p></aside>
+  </section>
+
+  <section class="sheet" id="s-gap" data-steps="1" data-title="The good prompt, and the gap it still had" data-t="18.5 to 21">
+    <div class="in">
+      <p class="kicker">Part 5 · The good prompt, judged</p>
+      <h2>The book's prompt,<br>a fresh session</h2>
+      <p style="width:600px">The five-part prompt you just read and the book's notes on Fusion's API, given to Claude Sonnet on 23 November. Nothing else: it could not read a file or run a line.</p>
+      <ul class="found" style="margin-top:6px">
+        <li><b>14 minutes</b> of thinking, then about 300 lines in one go; 17 min 29 s in all</li>
+        <li class="ok">The check's first lines pass: the dialog, five parts, centre distance 60.000 mm, As-built joints, one motion link, no interference at rest</li>
+        <li class="no" data-st="1">The check failed: gear 2's part sits at x = 0, its teeth drawn at 60; and the joint the check turns, "Gear 1 turns", has another name</li>
+        <li class="no" data-st="1">A second run, given the check's source as the book's test allows: a Fusion error before gear 2 was made</li>
+      </ul>
+      <p data-st="1" style="width:600px;margin-top:14px">The first run's two faults are about names the prompt never gave. A judge can only measure what the prompt <b>names</b>.</p>
+      <div class="report"><small>The book's check, run in Fusion on the script Claude wrote blind</small>
+        <div class="ok">ok   Run opens the dialog</div>
+        <div class="ok">ok   a new design opened</div>
+        <div class="ok">ok   five components: Base plate, Gear 1, Gear 2, Shaft 1, Shaft 2</div>
+        <div class="ok">ok   one body each</div>
+        <div class="no" data-st="1">FAIL gear 2 and shaft 2 at x = a = 60.00 mm (measured 0.000, 0.000)</div>
+        <div class="ok">ok   the base plate is grounded</div>
+        <div class="ok">ok   As-built Joints only: 2 revolute, 2 rigid</div>
+        <div class="ok">ok   one Motion Link</div>
+        <div class="ok">ok   no interference at rest</div>
+        <div class="er" data-st="1">IndexError: no joint called "Gear 1 turns"</div>
+        <div class="er" data-st="1" style="margin-top:14px;color:#d8dde5">Second blind run: RuntimeError: invalid argument profile</div>
+        <div class="er" data-st="1" style="color:#d8dde5">(gear 1's sketch; four parts, no gear 2)</div>
+      </div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. One click shows the failures, on the left and in the report.</p><p data-k="0"><b>SAY</b> So I tried it myself for this class, on the 23rd of November. The five-part prompt you just read, and the book's notes on Fusion's traps, given to Claude Sonnet in a fresh session. Nothing else. It could not read a file, and it could not run a single line. It had to write the script blind, in one go.</p><p data-k="0">It thought for fourteen minutes, then wrote about three hundred lines at once: seventeen minutes and twenty-nine seconds in all. Then we ran the book's check on it, in Fusion. The first lines pass. The dialog opens, there are five parts, the centre distance is 60.000 millimetres, As-built joints, one motion link, no interference at rest. Very good so far.</p><p data-k="1"><b>CLICK 1</b> And then it failed. Not on the gears: on two names. The check reads where gear two is from its part, and the script drew the teeth at sixty but left the part itself at zero. And the check turns a joint called "Gear 1 turns", a name that was never in the prompt. The model did what was written. The judge measured what was not written.</p><p data-k="1">A second run, this time given the check's source as well, as the book's test allows, stopped on a Fusion error before gear two even existed.</p><p data-k="1">So, written blind and in one go, it is luck. Two lessons. The acceptance part must name what the judge will measure. And the model must be allowed to run the check itself.</p><p class="src"><b>SOURCE</b> Run gear-spec-1 in prompt-lab/runs: the book's gearpair_check, sent to Fusion unchanged but for the script path. 8 ok, 1 FAIL (gear 2 at x = 0.000), then it stopped at the joint lookup. The second run is gear-book-1 (RuntimeError "invalid argument profile" while building gear 1, so four parts). Today's runs are Claude Sonnet; the 11 November test did not record its model.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-loop" data-steps="1" data-title="Write, run the check, fix" data-t="21 to 23">
+    <div class="in">
+      <p class="kicker">Part 5 · The loop</p>
+      <h2>Write, run the<br>check, <em>fix</em></h2>
+      <p style="width:600px">The same prompt, and one more permission: run the book's check on its own script, read what failed, correct it. Eight runs at most.</p>
+      <table class="ladder" style="position:absolute;right:0;top:0;width:1040px;font-size:26px" data-st="1"><thead><tr><th>Run</th><th>Fusion's check said</th></tr></thead><tbody>
+        <tr><td>1</td><td>7 ok · gear 2's shaft at x = 0</td></tr>
+        <tr><td>2</td><td>8 ok · two bodies share 502.7 mm³</td></tr>
+        <tr><td>3</td><td>3 ok · a wrong type in Fusion's API</td></tr>
+        <tr><td>4 to 8</td><td>9 ok · then the joint it looks for is not there</td></tr>
+      </tbody></table>
+
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. One click shows the table of check runs.</p><p data-k="0"><b>SAY</b> This is how an engineer works with it, and how I want you to work with it: write, run the check, read what failed, fix. The same prompt, with one more permission. Now the model may run the book's check on its own script, read what failed and correct it. Eight runs at most.</p><p data-k="1"><b>CLICK 1</b> First run: seven checks pass, and gear two's shaft is at zero. It reads the failure and recognises a trap from the book's notes: a position that Fusion throws away. It moves that step. Second run: eight pass, and two bodies share 502.7 cubic millimetres. The shaft is buried inside the gear. Fixed. Third run: a wrong type in Fusion's programming interface. Fixed.</p><p data-k="1">And then, five times in a row, runs four to eight: nine checks pass, and the check cannot find a joint called "Gear 1 turns". Nobody told it that name. It cannot fix what nobody wrote down, and it ran out of runs.</p><p data-k="1">So the loop is strong, but it cannot find information that is not there. Only you can put that in the prompt.</p><p class="src"><b>SOURCE</b> Run gear-loop-1 in prompt-lab/runs: one Write at 7 min 19 s, 19 corrections, 8 check runs, reply at 21 min 25 s. The check's reports are in the run's events file.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-goodgear" data-steps="2" data-title="Name what the judge measures" data-t="23 to 26">
+    <div class="in">
+      <p class="kicker">Part 5 · Two more lines</p>
+      <h2>Name what the<br>judge <em>measures</em></h2>
+      <div class="prompt" style="font-size:22px"><small>Added to the prompt's Fusion conventions</small>The revolute As-built Joints are named "Gear 1 turns" and "Gear 2 turns"; the check reads where Gear 2 and Shaft 2 are from their occurrences, so place those occurrences at (a, 0).</div>
+      <table class="ladder" style="width:640px;font-size:20px;margin-top:16px" data-st="1"><thead><tr><th>Run</th><th>Fusion's check said</th></tr></thead><tbody>
+        <tr><td>1</td><td>7 ok · a wrong type for the motion link</td></tr>
+        <tr><td>2</td><td>20 ok · the shaft inside the gear, 502.7 mm³</td></tr>
+        <tr><td>3, 4</td><td>22 ok · the message must say "= 70.00 mm"</td></tr>
+        <tr><td style="color:var(--ok)">5</td><td style="color:var(--ok)"><b>23 of 23 · ALL PASS</b> · 22 min 20 s</td></tr>
+      </tbody></table>
+      <p class="filmkeys" style="position:absolute;right:0;top:686px"><b>K</b> pause <b>J</b> <b>L</b> 5 s <b>R</b> again</p>
+      <figure class="vp"><video class="film" data-play="2" src="films/build-gear-named.mp4" preload="metadata" playsinline></video><figcaption>Its script, built by Fusion step by step · 22 min 20 s to ALL PASS, read no other file</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Click 1 shows the table of check runs. Click 2 plays the film full size (34 s).</p><p data-k="0"><b>SAY</b> So we add what was missing: two more lines in the Fusion conventions of the prompt, and nothing else changes. The revolute As-built joints are named "Gear 1 turns" and "Gear 2 turns". And the check reads where Gear 2 and Shaft 2 are from their occurrences, so those occurrences must sit at the centre distance. The names the judge looks for, written down.</p><p data-k="1"><b>CLICK 1</b> First run: seven pass, and a wrong type for the motion link. Fixed. Second run: twenty pass, and the shaft is inside the gear again, 502.7 cubic millimetres. Fixed. Third and fourth runs: twenty-two pass. Everything about the gears passes now. Gear one turns ninety degrees, and gear two turns back forty-five. No tooth touches another while they turn. Fifty teeth gives seventy millimetres. Twelve teeth is refused. The only failure left is the wording of one message: it must say "equals 70.00 millimetres".</p><p data-k="1">Fifth run: twenty-three of twenty-three. All pass, twenty-two minutes and twenty seconds after the prompt.</p><p data-k="2"><b>CLICK 2</b> <i>[the film]</i> Here is what that script builds, step by step: the plate, the shafts, gear one with its teeth, gear two, the joints. And then Fusion turns it.</p><p data-k="2"><i>[after the film]</i> A fresh session that could read nothing else. A prompt written by someone who knows gear theory. And a judge that measures. That is what is behind the machines you saw at the start.</p><p class="src"><b>SOURCE</b> Run gear-named-1 in prompt-lab/runs: one Write at 7 min 4 s, 10 corrections, 5 check runs, ALL PASS at 22 min 20 s. The session could write its file, edit it and run the book's check, nothing else.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-planet" data-steps="3" data-title="Planetary gearbox, ring held" data-t="26 to 28">
+    <div class="in">
+      <p class="kicker">Scaling up · Volume 1, chapter 15</p>
+      <h2>Four planets,<br>one prediction</h2>
+      <p style="width:760px">Hold the ring, drive the sun: the planets roll inside the ring and carry the carrier round. How slowly is a matter of counting teeth.</p>
+      <div class="calc" data-st="1">
+        <div class="ln"><i>Ring teeth</i>Zr = Zs + 2 Zp = 16 + 2 × 20 = <span class="res">56</span></div>
+        <div class="ln"><i>Ratio</i>1 + Zr / Zs = 1 + 56 / 16 = <span class="res">4.5</span></div>
+        <div class="ln"><i>Sun 360°</i>carrier 360 / 4.5 = <span class="res">80°</span></div>
+        <div class="ln"><i>Each planet</i>−(16 / 20)(360 − 80) = <span class="res">−224°</span> on the carrier</div>
+      </div>
+      <div class="readout" id="pl-read" style="bottom:340px"></div>
+      <div class="live" data-st="2"><b>Live in Fusion, if the stage kit is running</b><q>Build a planetary gearbox with four planets.</q><q>Turn the sun gear one full turn.</q></div>
+      <div class="verdict" data-st="3" style="bottom:250px"><span class="stamp ok">Carrier 80°</span><span class="stamp ok">Planets −224°</span></div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Three clicks. If the stage kit is running, Fusion after click 2.</p><p data-k="0"><b>SAY</b> The same method scales up. This is chapter 15 of the first volume: a planetary gearbox with four planets. Hold the ring and drive the sun. The planets roll inside the ring and carry the carrier round. How slowly it turns is only a matter of counting teeth. So, predict first.</p><p data-k="1"><b>CLICK 1</b> Sixteen teeth on the sun, twenty on each planet. The ring must have room for the sun and two planets across: sixteen plus two times twenty, fifty-six teeth. With the ring held, the ratio is one plus ring over sun: one plus fifty-six over sixteen, four and a half. So one full turn of the sun gives 360 divided by 4.5: eighty degrees of the carrier. And each planet turns back on its pin: minus sixteen over twenty, times 360 minus 80. That is minus 224 degrees.</p><p data-k="2"><b>CLICK 2</b> Now we ask: build a planetary gearbox with four planets, and turn the sun gear one full turn.</p><p data-k="2" class="live"><b>IF LIVE</b> Alt+Tab, say the two sentences, Alt+Tab back.</p><p data-k="3"><b>CLICK 3</b> Carrier eighty degrees, planets minus 224. The same numbers we wrote down before the build. The same habit, on a bigger machine.</p><p class="src"><b>SOURCE</b> The gears on the sheet are cut by its own cutter and placed by the book's phasing formula; the sheet checks that no two overlap at any angle it shows. Fusion printed 80 and −224 in every rehearsal.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-wrist" data-steps="4" data-title="The robot wrist: a bevel differential" data-t="28 to 30.5">
+    <div class="in">
+      <p class="kicker">Scaling up · Volume 2, chapter 39</p>
+      <h2>Two motors,<br>two movements</h2>
+      <div class="stack" style="width:700px;height:220px">
+        <p data-only="0">The tool must <b>tilt</b> and <b>roll</b>. Hanging a motor on each joint makes the arm heavy. This wrist keeps both motors on the frame and lets three bevel gears share their work: a <b>differential</b>.</p>
+        <p data-only="1">89 parts in 7 groups, as Fusion built them from the book's script: the frame, the carrier, two input drives, the roll output, two motors with their belts.</p>
+        <p data-only="2">Both motors turn <b>the same way</b>: the side gears turn together and carry the whole carrier round. The wrist tilts. The belts are 2 to 1, so the motors turn twice as far.</p>
+        <p data-only="3">Motors turn <b>opposite ways</b>: the side gears turn against each other, the carrier stays, and the output gear between them spins. The wrist rolls. Together: tilt and roll at once.</p>
+      </div>
+      <div class="calc" data-st="2" style="margin-top:8px">
+        <div class="ln"><i>Tilt 30°</i>each motor 2 × 30 = <span class="res">60°</span></div>
+        <div class="ln" data-st="3"><i>Roll 45°</i>motors 60 − 90 = <span class="res">−30°</span>, 60 + 90 = <span class="res">150°</span></div>
+        <div class="ln" data-st="3"><i>Back again</i>(−30 + 150) / 4 = 30°, (150 + 30) / 4 = 45°</div>
+      </div>
+      <div class="readout" id="wr-read" data-st="2" style="bottom:290px"></div>
+      <div class="live" data-st="4" style="left:0;bottom:110px"><b>Live in Fusion, if the stage kit is running</b><q>Build the robot wrist.</q><q>Tilt the wrist by 30 degrees, roll it by 45, and check that nothing collides.</q></div>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Four clicks. If the stage kit is running, Fusion after click 4.</p><p data-k="0"><b>SAY</b> And a robot part, from chapter 39 of the second volume: a wrist. The tool must tilt and roll. If you hang a motor on each joint, the first motor has to carry the second one around, and the arm gets heavy. This wrist keeps both motors on the frame and lets three bevel gears share their work. That is a differential.</p><p data-k="1"><b>CLICK 1</b> Fusion built it from the book's script: eighty-nine parts in seven groups. The frame, the carrier, two input drives, the roll output, and two motors with their belts.</p><p data-k="2"><b>CLICK 2</b> When both motors turn the same way, the side gears turn together and carry the whole carrier round. The wrist tilts. The belts are two to one, so the motors turn twice as far: thirty degrees of tilt is sixty degrees at each motor.</p><p data-k="3"><b>CLICK 3</b> When the motors turn opposite ways, the side gears turn against each other, the carrier stays, and the output gear between them spins. The wrist rolls. Both together give tilt and roll at once. For a tilt of thirty and a roll of forty-five, one motor goes to minus thirty and the other to 150. And back again: add them and divide by four, thirty degrees of tilt. Take the difference and divide by four, forty-five of roll. Two motors, two movements, and the arithmetic is the theory.</p><p data-k="4"><b>CLICK 4</b> Now we ask Fusion: build the robot wrist, tilt it by thirty degrees, roll it by forty-five, and check that nothing collides.</p><p data-k="4" class="live"><b>IF LIVE</b> Alt+Tab, say the sentences, Alt+Tab back.</p><p class="src"><b>SOURCE</b> The motions on the sheet are Fusion's own: each group turns about the axis Fusion turned it about, read from Fusion on 22 November.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-fails" data-title="Report of deviations" data-t="30.5 to 32.5">
+    <div class="in">
+      <p class="kicker">Part 6 · Honest numbers</p>
+      <h2>Report of deviations</h2>
+      <p style="width:1100px">Found while preparing this class, on this computer, between 21 and 23 November 2026. Each one is a reason to measure, not to trust.</p>
+      <table class="ncr"><thead><tr><th>No.</th><th>Observed</th><th>Measured</th><th>Done about it</th></tr></thead><tbody>
+        <tr><td>1</td><td>The model guessed a measurement</td><td>"0 mm³" three times; Fusion: 173.1 mm³</td><td>It measures through Fusion, never guesses</td></tr>
+        <tr><td>2</td><td>Written blind, one try is luck</td><td>The good gear prompt, twice, no running allowed: two different failures, a part at x = 0, then a Fusion error before gear 2 existed</td><td>Let it run the check and fix: 23 of 23 on the fifth run</td></tr>
+        <tr><td>3</td><td>"Built" is not "right"</td><td>"60 mm centre distance", said Claude; Fusion measured the design 1,560 mm across</td><td>Acceptance in the prompt, checked by Fusion</td></tr>
+        <tr><td>4</td><td>It retold a refusal wrongly</td><td>The script: "below 18 teeth at 20 degrees". The model: "below 20 degrees"</td><td>Rule: quote a refusal word for word</td></tr>
+        <tr><td>5</td><td>Fusion went silent</td><td>After about 370 requests it ran scripts and returned nothing; once on 23 November in the middle of a run</td><td>A fresh Fusion before the talk</td></tr>
+        <tr><td>6</td><td>My own tool cut the prompt</td><td>Windows passed only the first line of a 29-line prompt; the model built something else from it</td><td>Send prompts as input, not as a command line</td></tr>
+      </tbody></table>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. If time is short, read rows 2, 3 and 6 only.</p><p data-k="0"><b>SAY</b> I promised you honest numbers. This is what went wrong while I prepared this class, on this computer, between the 21st and the 23rd of November. Each one is a reason to measure, not to trust.</p><p data-k="0">One. The model guessed a measurement: zero, three times, where Fusion measured 173.1. So now it measures through Fusion and never guesses.</p><p data-k="0">Two. Written blind, one try is luck. The good gear prompt, twice, with no running allowed, gave two different failures. Allowed to run the check and fix, it reached twenty-three of twenty-three on the fifth run.</p><p data-k="0">Three. Built is not right. Claude said "sixty millimetre centre distance", and Fusion measured the design: 1,560 millimetres across. The answer is acceptance in the prompt, checked by Fusion.</p><p data-k="0">Four. It retold a refusal wrongly. The script said "below 18 teeth at 20 degrees"; the model reported "below 20 degrees". The rule: quote a refusal word for word.</p><p data-k="0">Five. Fusion went silent. After about 370 requests it ran scripts and returned nothing, once in the middle of a run. So: a fresh Fusion before a talk like this one.</p><p data-k="0">And six is my own mistake. My tool passed only the first line of a twenty-nine-line prompt, and the model, quite reasonably, built something else from it. Now prompts go in as input, never on a command line.</p><p class="src"><b>SOURCE</b> Rows 2, 3, 5 and 6: prompt-lab runs of 23 November 2026 (gear-spec-1, gear-book-1, gear-named-1, gear-sizes-1, see prompt-lab/README.md). Rows 1 and 4: rehearsal logs of 21 and 22 November.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-ladder" data-title="Bad prompt, good prompt" data-t="32.5 to 35">
+    <div class="in">
+      <p class="kicker">Take this home</p>
+      <h2>Bad prompt, good prompt</h2>
+      <table class="ladder" style="margin-top:10px"><thead><tr><th>You wrote</th><th>What came back, 23 November</th><th>Write instead</th></tr></thead><tbody>
+        <tr><td>A wish: "make me a gear pair"</td><td>It chose module 2.5 for you and put the centres 75.5 mm apart, where m·(z1 + z2) / 2 gives 75.0; no plate, no shafts, no joints, so nothing turns; 753.2 g of steel</td><td>Inputs: every number, and the material</td></tr>
+        <tr><td>The sizes, nothing else</td><td>"60 mm centre distance", said Claude. Fusion: the design is 1,560 mm across. Millimetres where the API wants centimetres</td><td>Conventions: "the API works in cm and radians: convert every input"</td></tr>
+        <tr><td>12 teeth, said in passing</td><td>No teeth at all, and 12 not refused</td><td>Hard constraints: involute flanks from the base circle; refuse fewer than 2 / sin²α, 18 at 20°</td></tr>
+        <tr><td>Positions left to the model</td><td>A centre distance it chose itself</td><td>Derived: the centre distance a = m·(z1 + z2) / 2, worked out in the script, never typed</td></tr>
+        <tr><td>A check that only looks for clashes</td><td>It passed a gear pair with no teeth</td><td>Acceptance: drive gear 1 by 90°, gear 2 must turn 45° back; no collision while turning</td></tr>
+        <tr><td>The names the judge needs, unsaid</td><td>8 checks passed, then a part at x = 0 and a joint it could not find</td><td>Name the parts and joints the check will measure</td></tr>
+      </tbody></table>
+      <p style="width:1600px;margin-top:22px">And the sixth line of every prompt: <b>tell me every decision you made that I did not ask for.</b></p>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing.</p><p data-k="0"><b>SAY</b> Here is everything so far on one sheet, for you to take home. On the left, what people usually write. In the middle, what came back, measured by Fusion. On the right, what to write instead.</p><p data-k="0">A wish: "make me a gear pair". It chose module 2.5 for you and put the centres 75.5 millimetres apart, where the formula gives 75.0. No plate, no shafts, no joints, so nothing turns, and 753.2 grams of steel. Write instead: inputs, every number, and the material.</p><p data-k="0">The sizes and nothing else. Claude said sixty millimetres; Fusion measured a design 1,560 millimetres across, because it used millimetres where the programming interface wants centimetres. Write the convention: the interface works in centimetres and radians, convert every input.</p><p data-k="0">Twelve teeth, said in passing: no teeth at all, and twelve not refused. Write the hard constraints: involute flanks from the base circle, and refuse fewer than two over sine squared alpha, eighteen at twenty degrees.</p><p data-k="0">Positions left to the model: it chose a centre distance itself. Write it as derived: module times the sum of the teeth, over two, worked out in the script and never typed.</p><p data-k="0">A check that only looks for clashes passed a gear pair with no teeth. Write acceptance: drive gear one by ninety degrees, gear two must turn forty-five back, and no collision while turning.</p><p data-k="0">And the names the judge needs, left unsaid: eight checks passed, then a part at zero and a joint it could not find. Name the parts and joints the check will measure.</p><p data-k="0">Every line on the right needs theory. You cannot ask for involute flanks, or refuse twelve teeth, or demand forty-five degrees back, unless you know why. That is why you study. And add a sixth line to every prompt: tell me every decision you made that I did not ask for.</p><p class="src"><b>SOURCE</b> Every number in the middle column is from prompt-lab/runs of 23 November 2026: gear-wish-1, gear-sizes-1, gear-few-1, gear-spec-1. The dot between letters on the sheet means times.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-robot" data-steps="1" data-title="A line follower, from one page" data-t="35 to 38.5">
+    <div class="in">
+      <p class="kicker">Take it home · one prompt, a whole robot</p>
+      <h2>A line follower,<br>from <em>one page</em></h2>
+      <ul class="found" style="margin-top:6px;width:620px">
+        <li><b>Inputs:</b> chassis, N20 motors in steel brackets, wheels with set screws, a screwed caster, sensor bar on L-brackets, Arduino Nano on standoffs, 18650 cells</li>
+        <li><b>Every fixing:</b> M3 screws, nuts and clearance holes</li>
+        <li><b>Derived:</b> axle and chassis heights, spacer length, sensors 4 mm up</li>
+        <li><b>Acceptance:</b> a check of 12 lines; "tell me every decision you made"</li>
+      </ul>
+      <p style="width:620px;margin-top:12px">Claude wrote 622 lines; the check failed once on a material name; then <b>12 of 12</b>: 68 parts, 20 screws, 14 nuts, 435 g.</p>
+      <div style="position:absolute;left:0;bottom:50px;display:flex;gap:26px;align-items:center">
+        <img src="assets/shots/qr-repo.png" alt="QR code to github.com/eamcmx/robothack26-line-follower" style="width:150px;height:150px;border:2px solid var(--ink)">
+        <div style="font:600 21px/1.35 var(--lt);color:var(--ink)">The prompts, the checks<br>and a prompt checker<br><span class="mono" style="font-size:17px;color:var(--ink2)">github.com/eamcmx/<br>robothack26-line-follower</span></div>
+      </div>
+      <p class="filmkeys" style="position:absolute;right:0;top:686px"><b>K</b> pause <b>J</b> <b>L</b> 5 s <b>R</b> again</p>
+      <figure class="vp"><video class="film" data-play="1" src="films/build-robot2.mp4" preload="metadata" playsinline></video><figcaption>Its script, built by Fusion step by step · real session, 23 November 2026</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. Click 1 plays the film full size (47 s). The QR code is on the sheet from the start; leave it up while people scan.</p><p data-k="0"><b>SAY</b> To finish, something you can take home and try. One page that describes a complete line-follower robot, in the same five parts. Inputs: a chassis, N20 gear motors in steel brackets, wheels with set screws, a screwed caster, a sensor bar on L-brackets, an Arduino Nano on standoffs, and 18650 cells. Every fixing: M3 screws, nuts and clearance holes. Derived values: the axle and chassis heights, the spacer length, the sensors four millimetres up. And acceptance: a check of twelve lines, and the last line, tell me every decision you made.</p><p data-k="0">Claude Opus wrote 622 lines from it. The check failed once, on a material name that Fusion's library does not have. It corrected that, and then twelve of twelve passed, ten minutes and twenty-six seconds after the prompt.</p><p data-k="1"><b>CLICK 1</b> <i>[the film]</i> Watch it build: the chassis, the motors in their brackets, the wheels, the caster, the sensor bar, the Arduino on its standoffs, the battery, and every screw and nut.</p><p data-k="1"><i>[after the film]</i> Sixty-eight parts, twenty screws, fourteen nuts, 435 grams. Every screw goes through its hole.</p><p data-k="1">Now take out your phones and scan the code. It is a public repository with both prompts, the basic one and this full one, the checks you run in Fusion, the scripts Claude wrote, and what the checks printed. Give the prompt to a model, run the check, give it the failures back, and repeat until it says all pass. Then change one number, and do it again.</p><p class="src"><b>SOURCE</b> Run robot2-1 in prompt-lab/runs (Claude Opus, 23 November 2026): one Write at 9 min 43 s, one correction, 2 check runs, ALL PASS at 10 min 26 s. Public repo: github.com/eamcmx/robothack26-line-follower; checker at eamcmx.github.io/robothack26-line-follower. The book's traps file is not in it.</p></aside>
+  </section>
+
+  <section class="sheet" id="s-close" data-title="Questions" data-t="38.5 to 40" data-tb="none">
+    <div class="in">
+      <p class="kicker">Thank you</p>
+      <h1>What would you<br>ask it to <em>build</em>?</h1>
+      <p class="lead" style="width:600px">Know the theory. Write the five parts. Predict the numbers. Let Fusion judge.</p>
+      <p style="margin-top:40px;font-size:26px;width:600px"><b>Prof. Emmanuel A. Merchán-Cruz</b><br>Transport and Telecommunication Institute, Riga</p>
+      <div style="position:absolute;left:0;bottom:60px;display:flex;gap:24px;align-items:center"><img src="assets/shots/qr-checker.png" alt="QR code to the prompt checker" style="width:170px;height:170px;border:2px solid var(--ink)"><div style="font:600 22px/1.35 var(--lt)">Check your own prompt<br><span class="mono" style="font-size:17px;color:var(--ink2)">eamcmx.github.io/<br>robothack26-line-follower</span></div></div>
+      <div class="book" style="right:0;top:716px;width:1120px;height:226px"><img src="assets/book-covers.webp" alt="The three covers of Mechanical Design in Autodesk Fusion with Claude" style="height:220px;width:460px"><div class="bt">Mechanical Design in Autodesk Fusion with Claude<small>Vol. 1 Machine Elements, Gears and Mechanisms · Vol. 2 Machines and Robots · Vol. 3 Detailed Design, Validation and Drawings</small><span class="amz">Coming soon on Amazon</span></div></div>
+      <figure class="vp" style="top:40px"><video class="film" data-loop src="films/build-robot2-loop.mp4" preload="auto" muted playsinline></video><figcaption>The line follower, built by Fusion from Claude's script</figcaption></figure>
+    </div>
+    <aside class="notes"><p><b>OPEN</b> Nothing. The film of the line follower loops on its own. The QR code on this sheet opens the prompt checker.</p><p data-k="0"><b>SAY</b> So, four things to remember. Know the theory. Write the five parts. Predict the numbers. Let Fusion judge.</p><p data-k="0">This second code opens a prompt checker. Paste your own prompt, and it shows which of the five parts it has and what it leaves the model to guess. Use it before you spend an hour on a run.</p><p data-k="0">And if you want the whole method, with every machine you saw today, it is in the book, Mechanical Design in Autodesk Fusion with Claude: three volumes, coming soon on Amazon.</p><p data-k="0">Thank you very much. And now my question to you: what would you ask it to build? Tell me, and let us see together which of the five parts your request is missing.</p><p><b>DO</b> Take two or three requests. For each one ask the room: which numbers are the inputs? What follows from them? What must be refused? What will we measure, and with what tolerance? If someone asks whether the model can do it alone: no. It writes, Fusion measures, and the check decides.</p></aside>
+  </section>
+
+  <div id="sheetno"></div>
+</div>
+<div id="jump"></div>
+<div id="grid"></div>
+<div id="inl"></div>
+
+<script src="assets/three.min.js"></script>
+<script src="assets/machines/wrist.js"></script>
+<script src="assets/machines/palletizer.js"></script>
+<script src="js/draft.js"></script>
+<script src="js/machine.js"></script>
+<script src="js/gearlab.js"></script>
+<script src="js/deck.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/sheets2.js"></script>
+<script src="js/films.js"></script>
+<script>
+(function(){function go(){if(go.done)return;go.done=true;DK.start();}
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(go,go);setTimeout(go,1200);}else go();})();
+</script>
+</body>
+</html>

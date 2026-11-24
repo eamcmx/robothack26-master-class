@@ -1,0 +1,186 @@
+/* Sheets of an engineering drawing: drafting paper, ink in two line weights, a border with zone marks and a title
+   block. Lettering in Bahnschrift (DIN 1451, the German road-sign and drawing-office face), code in Consolas. */
+:root{--paper:#f2eee3;--paper2:#e9e3d4;--ink:#1b1f24;--ink2:#4a4f57;--faint:#8a8576;--grid:rgba(40,70,100,.075);--grid2:rgba(40,70,100,.13);
+  --model:#1c5fb8;--judge:#c2410c;--ok:#2b7a3d;--no:#c92a2a;--hi:#f2c94c;--s:1;
+  --lt:'Bahnschrift','DIN Alternate','Barlow Semi Condensed','Roboto Condensed','Arial Narrow',sans-serif;--mono:Consolas,'Cascadia Mono','Courier New',monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2a2b2d;overflow:hidden;font-family:var(--lt);color:var(--ink);-webkit-font-smoothing:antialiased}
+#stage{position:fixed;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--s));transform-origin:center;background:var(--paper);
+  background-image:linear-gradient(var(--grid2) 1px,transparent 1px),linear-gradient(90deg,var(--grid2) 1px,transparent 1px),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:100px 100px,100px 100px,20px 20px,20px 20px;background-position:-2px -2px;box-shadow:0 30px 120px rgba(0,0,0,.55);overflow:hidden}
+
+/* the frame every sheet shares: border, zone marks, title block */
+.frame{position:absolute;inset:24px;border:3px solid var(--ink);pointer-events:none;z-index:4}
+.frame::before{content:"";position:absolute;inset:14px;border:1px solid var(--ink)}
+.zones{position:absolute;left:0;right:0;display:flex;font:600 13px var(--lt);color:var(--ink2);pointer-events:none}
+.zones.t{top:0;height:14px}.zones.b{bottom:0;height:14px}
+.zones span{flex:1;text-align:center;line-height:14px;border-left:1px solid var(--ink)}.zones span:first-child{border-left:0}
+.zonesv{position:absolute;top:14px;bottom:14px;display:flex;flex-direction:column;font:600 13px var(--lt);color:var(--ink2);width:14px}
+.zonesv.l{left:0}.zonesv.r{right:0}
+.zonesv span{flex:1;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--ink)}.zonesv span:first-child{border-top:0}
+.tblock{position:absolute;right:38px;bottom:38px;width:640px;border:2px solid var(--ink);background:rgba(242,238,227,.94);display:grid;grid-template-columns:1.25fr 1fr 1fr;font-size:13px;z-index:5;pointer-events:none}
+.tblock div{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:4px 8px 5px;min-height:38px}
+.tblock div:nth-child(3n){border-right:0}
+.tblock small{display:block;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--faint)}
+.tblock b{font-size:17px;font-weight:600;letter-spacing:.2px}
+.tblock .ttl{grid-column:1/4;border-right:0;min-height:44px}.tblock .ttl b{font-size:21px;font-weight:700}
+.tblock .chk b{color:var(--judge)}.tblock .drw b{color:var(--model)}
+.tblock .last{border-bottom:0}
+.tsi{position:absolute;left:52px;bottom:52px;height:46px;z-index:5;opacity:.9}
+
+/* sheets */
+.sheet{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .5s,visibility 0s .5s}
+.sheet.on{opacity:1;visibility:visible;transition:opacity .5s}
+.static .sheet{transition:none}
+.sheet .in{position:absolute;left:70px;top:66px;right:70px;bottom:66px}
+.kicker{font:600 22px var(--lt);letter-spacing:4px;text-transform:uppercase;color:var(--judge);margin:0 0 10px}
+h1{font:700 104px/0.96 var(--lt);letter-spacing:-2px;margin:0 0 26px;font-stretch:87.5%}
+h2{font:700 64px/1.02 var(--lt);letter-spacing:-1px;margin:0 0 20px;font-stretch:87.5%}
+h1 em,h2 em{font-style:normal;color:var(--judge)}
+p{font-size:30px;line-height:1.36;margin:0 0 18px;color:var(--ink2)}
+.lead{font-size:36px;color:var(--ink);font-weight:350}
+b{font-weight:700;color:var(--ink)}
+.mono{font-family:var(--mono)}
+.rule{height:3px;background:var(--ink);width:120px;margin:18px 0 26px}
+
+/* things that appear one click at a time */
+[data-st]{opacity:0;transform:translateY(14px);transition:opacity .45s,transform .5s}
+[data-st].on{opacity:1;transform:none}
+[data-only]{opacity:0;transition:opacity .35s}[data-only].on{opacity:1}
+.static [data-st],.static [data-only]{transition:none}
+
+/* hand calculation, as written on the sheet */
+.calc{font:400 30px/1.5 var(--lt);color:var(--ink)}
+.calc .ln{display:flex;gap:14px;align-items:baseline;white-space:nowrap}
+.calc .ln i{font-style:normal;color:var(--faint);font-size:19px;letter-spacing:1px;text-transform:uppercase;width:215px;flex:none}
+.calc .res{font-weight:700;color:var(--model)}
+.stamp{display:inline-block;border:3px solid var(--judge);color:var(--judge);font:700 26px var(--lt);letter-spacing:3px;text-transform:uppercase;padding:6px 16px;transform:rotate(-4deg);border-radius:4px}
+.stamp.ok{border-color:var(--ok);color:var(--ok)}
+.stamp.no{border-color:var(--no);color:var(--no)}
+
+/* leader notes: a label with a line to a point of a drawing */
+.note{position:absolute;font:600 22px var(--lt);color:var(--ink);white-space:nowrap}
+.note small{display:block;font-weight:400;font-size:18px;color:var(--ink2)}
+
+/* sliders drawn as a scale */
+.scale{display:flex;align-items:center;gap:18px;font:600 24px var(--lt)}
+.scale input{-webkit-appearance:none;appearance:none;width:520px;height:4px;background:var(--ink);outline:none;pointer-events:auto}
+.scale input::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:40px;background:var(--paper);border:3px solid var(--ink);cursor:pointer}
+.scale output{font:700 44px var(--lt);min-width:80px}
+.keys{font:400 18px var(--lt);color:var(--faint);letter-spacing:.5px}
+.keys b{display:inline-block;border:1.5px solid var(--ink2);border-radius:4px;padding:0 7px;margin:0 3px;color:var(--ink);font-weight:600}
+
+canvas.layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none}
+
+/* deck chrome */
+#sheetno{display:none}
+#jump{position:fixed;right:20px;top:16px;font:700 20px var(--lt);background:var(--ink);color:var(--paper);padding:6px 14px;display:none;z-index:9}
+#grid{position:fixed;inset:0;background:rgba(242,238,227,.98);z-index:30;display:none;overflow:auto;padding:36px 48px;font-family:var(--lt)}
+#grid.on{display:block}
+#grid a{display:inline-block;width:300px;margin:6px;padding:14px;border:1.5px solid var(--ink);cursor:pointer;font-size:18px;vertical-align:top;min-height:80px}
+#grid a b{display:block;font-size:28px}#grid a.cur{background:var(--hi)}
+#inl{position:fixed;left:0;right:0;bottom:0;max-height:38vh;overflow:auto;background:#fffdf6;border-top:2px solid var(--ink);padding:12px 22px;font:16px/1.45 var(--lt);display:none;z-index:20}
+#inl.on{display:block}
+/* the book: its three covers on a dark panel, with the Amazon line */
+.book{position:absolute;margin:0;border:3px solid var(--ink);background:#12151b;box-shadow:12px 12px 0 rgba(27,31,36,.12);display:flex;align-items:center;color:#fff}
+.book img{display:block}
+.book .bt{padding:0 28px;font:600 26px/1.25 var(--lt)}
+.book .bt small{display:block;font:500 18px/1.45 var(--lt);color:#b9c3d2;margin-top:8px}
+.book .amz{display:inline-block;white-space:nowrap;margin-top:14px;padding:6px 14px;background:#f2a33a;color:#14171c;font:700 19px var(--lt);letter-spacing:1.5px;text-transform:uppercase}
+#s-built:has(.book.on) figure.vp figcaption,#s-built:has(.book.on) .filmkeys{opacity:0}
+#inl p[data-k]{padding:4px 8px;border-left:4px solid transparent}#inl p.now{background:#fff3c4;border-left-color:#c2410c}#inl p.past{color:#8a8375}#inl p.src,#inl p.live{font-size:14px;color:#6b6458}
+html.paused #stage::before{content:"paused";position:absolute;right:44px;top:44px;font:600 14px var(--lt);letter-spacing:2px;text-transform:uppercase;color:var(--faint);z-index:9}
+.notes{display:none}
+.stack{position:relative}.stack>[data-only]{position:absolute;left:0;top:0;right:0}
+.readout{position:absolute;left:0;bottom:100px;display:flex;gap:34px;font:600 22px var(--lt);color:var(--ink2)}
+.readout div{border-left:3px solid var(--ink);padding-left:12px}.readout b{display:block;font:700 46px var(--lt);color:var(--ink);font-variant-numeric:tabular-nums}
+.readout .m b{color:var(--model)}
+.sheet .in{z-index:3}
+
+/* three test cards: what the model was asked, what it answered */
+.tests{position:absolute;left:0;right:0;top:430px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;width:1780px}
+.card{border:2px solid var(--ink);background:rgba(242,238,227,.92);padding:22px 26px 20px;position:relative}
+.card small{display:block;font:600 15px var(--lt);letter-spacing:2px;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.card b{display:block;font:600 28px/1.25 var(--lt);margin-bottom:12px}
+.card p{font-size:23px;line-height:1.35;margin:0 0 16px}
+.ans{font:700 40px var(--lt);border-top:1.5px solid var(--ink);padding-top:12px}
+.ans.ok{color:var(--ok)}.ans.no{color:var(--no)}.ans.judge{color:var(--judge)}
+
+/* the live request: what he says next, in the room's sight */
+.live{position:absolute;left:0;bottom:110px;width:740px;border:2.5px dashed var(--judge);background:rgba(242,238,227,.95);padding:14px 22px 16px}
+.live b{display:block;font:700 16px var(--lt);letter-spacing:3px;text-transform:uppercase;color:var(--judge);margin-bottom:6px}
+.live q{display:block;font:600 27px/1.3 var(--lt);color:var(--ink);quotes:"\201C" "\201D";margin-top:4px}
+.verdict{position:absolute;left:0;bottom:270px;display:flex;flex-direction:row;gap:22px;align-items:flex-start}
+
+/* the specification form of the book's prompt */
+.spec{position:absolute;left:780px;top:0;width:1000px;border:2.5px solid var(--ink);background:rgba(242,238,227,.94)}
+.spec>div{border-bottom:1.5px solid var(--ink);padding:14px 22px 14px}.spec>div:last-child{border-bottom:0}
+.spec small{display:block;font:700 16px var(--lt);letter-spacing:2.5px;text-transform:uppercase;color:var(--model);margin-bottom:4px}
+.spec .acc small{color:var(--judge)}
+.spec p{font:400 25px/1.35 var(--lt);color:var(--ink);margin:0}
+.facts{position:absolute;left:0;top:520px;display:flex;gap:40px}
+.facts div{border-left:4px solid var(--judge);padding-left:16px;width:330px}
+.facts b{display:block;font:700 60px/1 var(--lt);color:var(--ink)}
+.facts span{display:block;font:400 21px/1.3 var(--lt);color:var(--ink2);margin-top:6px}
+
+/* the parts list and the report of deviations: tables of a drawing */
+table.bom,table.ncr{border-collapse:collapse;font-family:var(--lt);background:rgba(242,238,227,.95)}
+table.bom{position:absolute;left:0;top:420px;width:640px}
+.bom th,.bom td,.ncr th,.ncr td{border:1.5px solid var(--ink);padding:5px 12px;font-size:21px;text-align:left}
+.bom th,.ncr th{font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--faint);font-weight:600}
+.bom td:last-child{text-align:right;font-variant-numeric:tabular-nums;width:120px}
+.bom td:first-child{width:60px;text-align:center}
+.bom tr.tot td{font-weight:700;font-size:26px;border-top:3px solid var(--ink)}
+.bom .bar{display:inline-block;height:10px;background:var(--model);opacity:.35;margin-left:10px;vertical-align:middle}
+table.ncr{width:1780px;margin-top:8px}
+.ncr td{font-size:23px;line-height:1.3;vertical-align:top}
+.ncr td:first-child{width:70px;text-align:center;font-weight:700}
+.ncr td:nth-child(2){width:330px;font-weight:600}
+.ncr td:last-child{width:470px;color:var(--ok);font-weight:600}
+
+/* the loop */
+ol.loop{list-style:none;padding:0;margin:20px 0 0;width:820px;counter-reset:l}
+ol.loop li{counter-increment:l;position:relative;padding:12px 0 12px 76px;font-size:29px;line-height:1.3;color:var(--ink2);border-bottom:1.5px solid rgba(27,31,36,.25)}
+ol.loop li::before{content:counter(l);position:absolute;left:0;top:10px;width:50px;height:50px;border:2.5px solid var(--ink);border-radius:50%;text-align:center;line-height:46px;font:700 26px var(--lt);color:var(--ink)}
+
+/* ---------- films of the prompt lab ---------- */
+figure.vp{position:absolute;right:0;top:0;width:1120px;margin:0;border:3px solid var(--ink);background:#15181d;box-shadow:12px 12px 0 rgba(27,31,36,.12)}
+figure.vp video{display:block;width:100%;height:auto;background:#15181d}
+figure.vp figcaption{position:absolute;left:-3px;top:100%;margin-top:8px;font:600 17px var(--lt);letter-spacing:1.5px;text-transform:uppercase;color:var(--ink2);white-space:nowrap}
+figure.vp.small{width:900px}
+.prompt{border-left:5px solid var(--model);background:rgba(242,238,227,.95);padding:10px 18px 12px;font:600 27px/1.3 var(--lt);color:var(--ink);width:600px}
+.prompt small{display:block;font:700 15px var(--lt);letter-spacing:2.5px;text-transform:uppercase;color:var(--model);margin-bottom:4px}
+.found{list-style:none;margin:0;padding:0;width:600px}
+.found li{font:400 25px/1.3 var(--lt);color:var(--ink);padding:9px 0 9px 34px;border-bottom:1.5px solid rgba(27,31,36,.25);position:relative}
+.found li::before{content:"";position:absolute;left:4px;top:18px;width:14px;height:14px;border:2.5px solid var(--judge);transform:rotate(45deg)}
+.found li b{font-weight:700}
+.found li.ok::before{border-color:var(--ok);border-radius:50%;transform:none}
+.found li.no::before{border-color:var(--no)}
+table.ladder{border-collapse:collapse;width:1780px;font:400 23px/1.28 var(--lt);background:rgba(242,238,227,.95)}
+.ladder th{font:700 15px var(--lt);letter-spacing:2.5px;text-transform:uppercase;text-align:left;padding:10px 16px;border:2px solid var(--ink);color:var(--ink2)}
+.ladder td{padding:10px 16px;border:2px solid var(--ink);vertical-align:top;color:var(--ink)}
+.ladder td:first-child{font-weight:700;width:360px}
+.ladder td:nth-child(2){color:var(--no);width:640px}
+.ladder td:last-child{color:var(--ok)}
+.turns{display:flex;gap:14px;margin-top:6px}
+.turns div{width:128px;border-top:4px solid var(--model);padding-top:6px;font:400 18px/1.25 var(--lt);color:var(--ink2)}
+.turns b{display:block;font:700 34px/1 var(--lt);color:var(--ink)}
+.livebox{border:2.5px dashed var(--judge);background:rgba(242,238,227,.95);padding:12px 20px 14px;width:600px}
+.livebox b{display:block;font:700 16px var(--lt);letter-spacing:3px;text-transform:uppercase;color:var(--judge);margin-bottom:4px}
+.livebox span{font:400 23px/1.3 var(--lt);color:var(--ink)}
+figure.vp{transition:width .45s ease,top .45s ease,right .45s ease}
+figure.vp.big{width:1720px;top:-14px;right:30px;z-index:8;box-shadow:0 20px 80px rgba(0,0,0,.45)}
+figure.vp.big figcaption{display:none}
+.filmkeys{font:400 17px var(--lt);color:var(--faint);letter-spacing:.5px}
+.filmkeys b{display:inline-block;border:1.5px solid var(--faint);border-radius:3px;padding:0 6px;margin:0 3px;font-weight:600;color:var(--ink2)}
+.sheet:has(figure.vp.big) .tblock{opacity:0;transition:opacity .3s}
+.sheet:has(figure.vp.big) .in{z-index:6}
+
+/* the check's own report, as printed in Fusion */
+.report{position:absolute;right:0;top:0;width:1060px;background:#15181d;border:3px solid var(--ink);padding:22px 28px 24px;font:400 21px/1.55 var(--mono);color:#d8dde5;box-shadow:12px 12px 0 rgba(27,31,36,.12)}
+.report small{display:block;font:700 15px var(--lt);letter-spacing:2.5px;text-transform:uppercase;color:#5ec4e6;margin-bottom:10px}
+.report .ok{color:#60d280}.report .no{color:#ff635c}.report .er{color:#ffb4a9}
+.report div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* tooth sheet: a shorter scale so the verdict stamp stays clear of the rack cutter */
+#tooth-z{width:400px}
